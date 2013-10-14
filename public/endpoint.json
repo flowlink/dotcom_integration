@@ -1,0 +1,58 @@
+{
+    "name": "dotcom",
+    "display": "Dotcom Distribution",
+    "description": "Order fulfillment and tracking using Shipwire",
+    "help": "http://guides.spreecommerce.com/integration/endpoints/dotcom_integration.html",
+    "icon_url": "dotcom.png",
+    "services": [
+        {
+            "name": "send_shipment",
+            "path": "/send_shipment",
+            "description": "Send shipment details to Dotcom Distribution on completion",
+            "requires": {
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "Dotcom Distribution username"
+                    },
+                    {
+                        "name": "password",
+                        "description": "Dotcom Distribution password"
+                    }
+                ]
+            },
+            "recommends": {
+                "messages": ["shipment:ready"]
+            },
+            "produces": {}
+        },
+        {
+            "name": "tracking",
+            "path": "/tracking",
+            "description": "Track shipment dispatches.",
+            "requires": {
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "Dotcom Distribution username"
+                    },
+                    {
+                        "name": "password",
+                        "description": "Dotcom Distribution password"
+                    }
+                ]
+            },
+            "recommends": {
+                "messages": ["dotcom:shipment_results:poll"]
+            },
+            "produces": {
+                "messages": [
+                    {
+                        "message": "shipment:confirm",
+                        "schema": "/shipment_confirm.json"
+                    }
+                ]
+            }
+        }
+    ]
+}
