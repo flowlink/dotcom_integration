@@ -1,6 +1,18 @@
 module Factories
   class << self
 
+    def api_key
+      '0ec79156828ad21b109a616aa3ca920e'
+    end
+
+    def password
+      'f22a1c177fbfd951afb4661d446b5491'
+    end
+
+    def config(args={})
+      { 'dotcom.api_key' => api_key, 'dotcom.password' => password }
+    end
+
     def shipment(args={})
       payload["shipment"].merge(args)
     end
