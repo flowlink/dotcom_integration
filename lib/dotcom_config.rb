@@ -6,7 +6,7 @@ require 'nokogiri'
 
 class DotcomConfig
   include HTTParty
-  base_uri 'https://cwa.dotcomdistribution.com/dcd_api_test/DCDAPIService.svc/'
+  base_uri 'http://cwa.dotcomdistribution.com/dcd_api_test/DCDAPIService.svc/'
   format :xml
 
   attr_accessor :api_key, :password, :algorithm
@@ -30,17 +30,14 @@ class DotcomConfig
 
   private
   def authorization_header
-    api_key + ":" + computed_hash
+    "#{api_key}:#{computed_hash}"
   end
 
   def computed_hash
     unless @computed_hash_value
-      password_bytes = password.bytes.join
-      uri_bytes = (self.class.base_uri + request_path).bytes.join
-
-      digest = OpenSSL::HMAC.digest(algorithm, password_bytes, uri_bytes)
-      
-      @computed_hash_value = Base64.encode64(digest)
+      digest = OpenSSL::Digest::Digest.new('md5')
+      hash = OpenSSL::HMAC.digest(digest, password, (self.class.base_uri + request_path))
+      @computed_hash_value = Base64.encode64(hash)
     end
     @computed_hash_value
   end

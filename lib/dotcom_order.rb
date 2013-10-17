@@ -16,7 +16,7 @@ class DotcomOrder < DotcomConfig
       xml.orders {
         xml.order {
           xml.__send__('order-number', number)
-          xml.__send__('ship-date', shipped_at)
+          xml.__send__('ship_date', shipped_at)
           xml.__send__('ship-method', shipping_method)
           xml.__send__('invoice-number', order_number)
 
@@ -32,7 +32,7 @@ class DotcomOrder < DotcomConfig
             xml.email       email
           }
 
-          xml.__send__('line_items') {
+          xml.__send__('line-items') {
             shipment_items.each_with_index do |item, index|
               xml.__send__('line_item') {
                 xml.__send__('client-item', item['name'])
