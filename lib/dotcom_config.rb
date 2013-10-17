@@ -25,7 +25,8 @@ class DotcomConfig
   end
 
   def send!
-    self.class.post(request_path, :body => generate_xml, :headers => {'Authorization' => authorization_header, 'Content-Type' => 'application/xml'})
+    response = self.class.post(request_path, :body => generate_xml, :headers => {'Authorization' => authorization_header, 'Content-Type' => 'application/xml'})
+    response['response']
   end
 
   private

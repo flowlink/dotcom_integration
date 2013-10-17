@@ -17,7 +17,7 @@ class DotcomOrder < DotcomConfig
     Nokogiri::XML::Builder.new do |xml|
       xml.orders {
         xml.order {
-          xml.send 'order-number',                 "#{order_number}-#{number}"
+          xml.send 'order-number',                 number
           xml.send 'ship_date',                    shipped_at
           xml.send 'ship-method',                  shipping_method
           xml.send 'invoice-number',               0
