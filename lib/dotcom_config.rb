@@ -1,6 +1,5 @@
 require './lib/errors'
 
-require 'pry'
 require 'httparty'
 require 'nokogiri'
 
@@ -9,18 +8,16 @@ class DotcomConfig
   base_uri 'http://cwa.dotcomdistribution.com/dcd_api_test/DCDAPIService.svc/'
   format :xml
 
-  attr_accessor :api_key, :password, :algorithm
+  attr_accessor :api_key, :password
 
   def initialize config
     @password  = config['dotcom.password']
     @api_key   = config['dotcom.api_key']
 
-    @algorithm = 'md5'
-
-    authenticate!
+    validate!
   end
 
-  def authenticate!
+  def validate!
     raise AuthenticationError, "API key and Password must be provided" if api_key.nil? || password.nil?
   end
 
@@ -35,14 +32,8 @@ class DotcomConfig
   end
 
   def computed_hash
-    unless @computed_hash_value
-      digest = OpenSSL::Digest::Digest.new('md5')
-      hash = OpenSSL::HMAC.digest(digest, password, (self.class.base_uri + request_path))
-      @computed_hash_value = Base64.encode64(hash)
-    end
-    @computed_hash_value
+    digest = OpenSSL::Digest::Digest.new('md5')
+    hash = OpenSSL::HMAC.digest(digest, password, (self.class.base_uri + request_path))
+    Base64.encode64(hash)
   end
 end
-
-# class ShipWireSubmitOrderError < StandardError; end
-# class SendError < StandardError; end

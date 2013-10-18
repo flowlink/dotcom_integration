@@ -51,8 +51,8 @@ module Factories
           },
           "items" => [
             {
-              "name" => "Spree Baseball Jersey",
-              "sku" => "SPR-00001",
+              "name" => "The A Pocket fit sits comfor",
+              "sku" => "7FO-100169-NAK-24",
               "external_ref" => "",
               "quantity" => 1,
               "price" => 19.99,
@@ -61,8 +61,8 @@ module Factories
               }
             },
             {
-              "name" => "Ruby on Rails Baseball Jersey",
-              "sku" => "ROR-00004",
+              "name" => "The A Pocket fit sits comfor",
+              "sku" => "7FO-100169-NAK-25",
               "external_ref" => "",
               "quantity" => 1,
               "price" => 19.99,

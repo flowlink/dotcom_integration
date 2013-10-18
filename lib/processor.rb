@@ -4,37 +4,24 @@ class Processor
     shipment = DotcomOrder.new(doc, config)
     response = shipment.send!
 
-    notifications = []
-
-    if response.key?('order_errors') and response['order_errors'].key?('order_error')
+    if response['order_errors'] and response['order_errors'].key?('order_error')
       errors = response['order_errors']['order_error']
       errors = [errors] if errors.class == Hash
 
-      errors.each do |error|
-        notifications << error_notification(error)
-      end
+      raise DotcomError.new(errors)
     else
-      notifications << success_notification
+      { :notifications => success_notification }
     end
-
-    { :notifications => notifications }
   end
 
   private 
   def self.success_notification
-    {
-      level: 'info',
-      subject: 'Successfully Sent Shipment to Dotcom Distribuition',
-      description: 'Successfully Sent Shipment to Dotcom Distribuition'
-    }
+    [
+      {
+        level: 'info',
+        subject: 'Successfully Sent Shipment to Dotcom Distribuition',
+        description: 'Successfully Sent Shipment to Dotcom Distribuition'
+      }
+    ]
   end
-
-  def self.error_notification(error)
-    {
-      level: 'error',
-      subject: error['error_description'],
-      description: error['error_description']
-    }
-  end
-
 end

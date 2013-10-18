@@ -8,4 +8,4 @@ For a detailted explanation check out the [Spree Guides - Dotcom Distribution En
 
 ## Shipment Tracking
 
-* Track shipment dispatches
+* Track shipment dispatches from Dotcom Distribution
