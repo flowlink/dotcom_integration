@@ -5,12 +5,16 @@ class Processor
     response = shipment.send!
 
     notifications = []
-    if response.key?('order_errors')
-      response['order_errors']['order_error'].each do |error|
+
+    if response.key?('order_errors') and response['order_errors'].key?('order_error')
+      errors = response['order_errors']['order_error']
+      errors = [errors] if errors.class == Hash
+
+      errors.each do |error|
         notifications << error_notification(error)
       end
     else
-      success_notification
+      notifications << success_notification
     end
 
     { :notifications => notifications }

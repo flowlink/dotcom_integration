@@ -9,6 +9,7 @@ gem 'json'
 gem 'nokogiri'
 
 group :development do
+  gem 'shotgun'
   gem 'pry'
   gem 'awesome_print'
 end

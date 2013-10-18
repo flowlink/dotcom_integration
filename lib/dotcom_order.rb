@@ -137,11 +137,11 @@ class DotcomOrder < DotcomConfig
   end
 
   def shipped_at
-    shipment['shipped_at'][0..-11]
+    shipment['shipped_at'] ? shipment['shipped_at'][0..-11] : Date.today
   end
 
   def shipping_method
-    shipment['shipping_method'][0..2]
+    shipment['shipping_method'] ? shipment['shipping_method'][0..2] : ""
   end
 
   def email
