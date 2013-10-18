@@ -1,5 +1,3 @@
-require './lib/helpers'
-
 class DotcomOrder < DotcomConfig
   attr_reader :shipment
 
@@ -19,7 +17,7 @@ class DotcomOrder < DotcomConfig
         xml.order {
           xml.send 'order-number',                 number
           xml.send 'ship_date',                    shipped_at
-          xml.send 'ship-method',                  shipping_method
+          xml.send 'ship-method',                  Helpers.translate_shipping_method(shipping_method)
           xml.send 'invoice-number',               0
           xml.send 'order-date',                   Date.today.to_s
           xml.send 'ship_via',                     ''
@@ -84,7 +82,7 @@ class DotcomOrder < DotcomConfig
             xml.send 'shipping-address2',          shipping_address2
             xml.send 'shipping-address3',          ''
             xml.send 'shipping-city',              shipping_city
-            xml.send 'shipping-state',             states_hash[shipping_state]
+            xml.send 'shipping-state',             Helpers.states_hash[shipping_state]
             xml.send 'shipping-country',           shipping_country
             xml.send 'shipping-iso-country-code',  ''
             xml.send 'shipping-zip',               shipping_zipcode
@@ -98,7 +96,7 @@ class DotcomOrder < DotcomConfig
             xml.send 'store-address1',             shipping_address1
             xml.send 'store-address2',             shipping_address2
             xml.send 'store-city',                 shipping_city
-            xml.send 'store-state',                'MD' # shipping_state convert to 2 chars
+            xml.send 'store-state',                Helpers.states_hash[shipping_state]
             xml.send 'store-country',              shipping_country
             xml.send 'store-zip',                  shipping_zipcode
             xml.send 'store-phone',                shipping_phone

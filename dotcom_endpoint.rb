@@ -35,16 +35,6 @@ class DotcomEndpoint < EndpointBase
   	{ 'message_id' => @message[:message_id] }
   end
 
-  # def success_notification(response)
-  #   { notifications:
-  #     [
-  #     	{ level: 'info',
-  #         subject: 'Successfully Sent Shipment to Shipwire',
-  #         description: 'Successfully Sent Shipment to Shipwire' }
-  #     ]
-  #   }.merge(response)
-  # end
-
   def error_notification(e)
     { notifications:
       [

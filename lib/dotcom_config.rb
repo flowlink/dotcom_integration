@@ -21,7 +21,7 @@ class DotcomConfig
   end
 
   def authenticate!
-    raise AuthenticationError if api_key.nil? || password.nil?
+    raise AuthenticationError, "API key and Password must be provided" if api_key.nil? || password.nil?
   end
 
   def send!
