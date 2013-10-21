@@ -1,4 +1,3 @@
-require 'pry'
 class Processor
 
   def self.send_shipment shipment, config
