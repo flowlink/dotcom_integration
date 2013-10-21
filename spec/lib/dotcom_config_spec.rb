@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DotcomConfig do
-  let(:config) { Factories.config }
+  let(:config) { Factories.processed_config }
 
   it 'creates valid object' do
     expect {
@@ -11,7 +11,7 @@ describe DotcomConfig do
     }.to_not raise_error
   end
 
-  it 'raises error without API key' do
+  it 'raises error without config' do
     expect {
       instance = described_class.new('')
     }.to raise_error AuthenticationError

@@ -21,7 +21,7 @@ class DotcomEndpoint < EndpointBase
 
   post '/tracking' do
     begin
-      msg = Processor.track_shipment(@message[:payload]['shipment'], @config)
+      msg = Processor.track_shipments(@config)
       code = 200
     rescue DotcomError => e
       msg = e.generate_error_notifications_hash

@@ -1,17 +1,24 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# describe DotcomError do
-#   subject { described_class.new( {"error" => "Invalid Email Address: spree@example.com", "code" => 502} ) }
+describe DotcomError do
+  let(:error) {
+    [{"error_description"=>
+      "Invalid Item. Item SPR-00001 does not exist in the item master.",
+      "order_number"=>"H215918586"}]
+  }
 
-#   it 'creates valid object' do
-#     subject.code.should eq(502)
-#     subject.msg.should eq("Invalid Email Address: spree@example.com")
-#   end
+  subject { described_class.new(error) }
 
-#   it '#error_notification returns correct hash/structure' do
-#     subject.error_notification.should have_key(:notifications)
-#     subject.error_notification[:notifications].first[:level].should eq("error")
-#     subject.error_notification[:notifications].first[:subject].should eq("MailChimp Error Code: #{subject.code}")
-#     subject.error_notification[:notifications].first[:description].should eq(subject.msg)
-#   end
-# end
+  it 'creates valid object' do
+    subject.errors_array.should eq(error)
+    subject.should be_kind_of(StandardError)
+  end
+
+  it '#generate_error_notifications_hash returns correct hash/structure' do
+    subject.generate_error_notifications_hash.should have_key(:notifications)
+    subject.generate_error_notifications_hash[:notifications].should be_kind_of(Array)
+    subject.generate_error_notifications_hash[:notifications].first[:level].should eq("error")
+    subject.generate_error_notifications_hash[:notifications].first[:subject].should eq("Invalid Item. Item SPR-00001 does not exist in the item master.")
+    subject.generate_error_notifications_hash[:notifications].first[:description].should eq("Invalid Item. Item SPR-00001 does not exist in the item master.")
+  end
+end

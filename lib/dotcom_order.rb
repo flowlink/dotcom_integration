@@ -2,9 +2,8 @@ class DotcomOrder < DotcomConfig
   attr_reader :shipment
 
   def initialize shipment, config
-    @shipment = shipment
-
     super(config)
+    @shipment = shipment
   end
 
   def request_path 

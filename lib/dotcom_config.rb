@@ -22,6 +22,11 @@ class DotcomConfig
     response['response']
   end
 
+  def poll!
+    self.class.get(request_path, :headers => {'Authorization' => authorization_header, 'Content-Type' => 'application/xml'})
+    response['response']
+  end
+
   private
   def validate!
     raise AuthenticationError, "API key and Password must be provided" if api_key.nil? || password.nil?
@@ -36,4 +41,6 @@ class DotcomConfig
     hash = OpenSSL::HMAC.digest(digest, password, (self.class.base_uri + request_path))
     Base64.encode64(hash)
   end
+
+  # TODO Require request_path, etc. methods to be implemented.
 end

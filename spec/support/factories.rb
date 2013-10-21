@@ -10,7 +10,14 @@ module Factories
     end
 
     def config(args={})
-      { 'dotcom.api_key' => api_key, 'dotcom.password' => password }.merge(args)
+      [
+        { 'name' => 'dotcom.api_key', 'value' => api_key },
+        { 'name' => 'dotcom.password', 'value' => password }
+      ]
+    end
+
+    def processed_config
+      { 'dotcom.api_key' => api_key, 'dotcom.password' => api_key }
     end
 
     def shipment(args={})
@@ -25,7 +32,45 @@ module Factories
       payload["original"].merge(args)
     end
 
-    def payload(args={})
+    def non_existent_items
+      [{
+        "name" => "Spree Baseball Jersey",
+        "sku" => "SPR-00001",
+        "external_ref" => "",
+        "quantity" => 1,
+        "price" => 19.99,
+        "variant_id" => 8,
+        "options" => {}
+      }]
+    end
+
+    def existent_items
+      [
+        {
+          "name" => "The A Pocket fit sits comfor",
+          "sku" => "7FO-100169-NAK-24",
+          "external_ref" => "",
+          "quantity" => 1,
+          "price" => 19.99,
+          "variant_id" => 8,
+          "options" => {}
+        },
+        {
+          "name" => "The A Pocket fit sits comfor",
+          "sku" => "7FO-100169-NAK-25",
+          "external_ref" => "",
+          "quantity" => 1,
+          "price" => 19.99,
+          "variant_id" => 20,
+          "options" => {
+            "tshirt-color" => "Red",
+            "tshirt-size" => "Medium"
+          }
+        }
+      ]
+    end
+
+    def payload(args={}, items = existent_items)
       {
         "shipment" => {
           "number" => "H215918586",
@@ -49,30 +94,7 @@ module Factories
             "country" => "US",
             "phone" => "555-123-456"
           },
-          "items" => [
-            {
-              "name" => "The A Pocket fit sits comfor",
-              "sku" => "7FO-100169-NAK-24",
-              "external_ref" => "",
-              "quantity" => 1,
-              "price" => 19.99,
-              "variant_id" => 8,
-              "options" => {
-              }
-            },
-            {
-              "name" => "The A Pocket fit sits comfor",
-              "sku" => "7FO-100169-NAK-25",
-              "external_ref" => "",
-              "quantity" => 1,
-              "price" => 19.99,
-              "variant_id" => 20,
-              "options" => {
-                "tshirt-color" => "Red",
-                "tshirt-size" => "Medium"
-              }
-            }
-          ]
+          "items" => items
         },
         "order" => {
           "number" => "R61927170",
