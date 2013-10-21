@@ -125,7 +125,6 @@ class DotcomOrder < DotcomConfig
 
   private
 
-  # TODO Re-factor, generate these dynamically with define_method
   def number
     shipment['number']
   end
@@ -150,33 +149,11 @@ class DotcomOrder < DotcomConfig
     shipment['shipping_address']
   end
 
-  def shipping_address1
-    shipping_address['address1']
-  end
-
-  def shipping_address2
-    shipping_address['address2']
-  end
-
-  def shipping_city
-    shipping_address['city']
-  end
-
-  def shipping_state
-    shipping_address['state']
-  end
-
-  def shipping_country
-    shipping_address['country']
-  end
-
-  def shipping_zipcode
-    shipping_address['zipcode']
-  end
-
-  def shipping_phone
-    shipping_address['phone']
-  end
+  ['address1', 'address2', 'city', 'state', 'country', 'zipcode', 'phone'].each do |str|
+    define_method "shipping_#{str}" do
+      shipping_address[str]
+    end
+  end 
 
   def shipping_full_name
     "#{shipping_address['firstname']} #{shipping_address['lastname']}"

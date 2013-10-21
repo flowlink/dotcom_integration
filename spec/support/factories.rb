@@ -10,7 +10,7 @@ module Factories
     end
 
     def config(args={})
-      { 'dotcom.api_key' => api_key, 'dotcom.password' => password }
+      { 'dotcom.api_key' => api_key, 'dotcom.password' => password }.merge(args)
     end
 
     def shipment(args={})

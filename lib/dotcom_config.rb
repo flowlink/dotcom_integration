@@ -17,16 +17,16 @@ class DotcomConfig
     validate!
   end
 
-  def validate!
-    raise AuthenticationError, "API key and Password must be provided" if api_key.nil? || password.nil?
-  end
-
   def send!
     response = self.class.post(request_path, :body => generate_xml, :headers => {'Authorization' => authorization_header, 'Content-Type' => 'application/xml'})
     response['response']
   end
 
   private
+  def validate!
+    raise AuthenticationError, "API key and Password must be provided" if api_key.nil? || password.nil?
+  end
+
   def authorization_header
     "#{api_key}:#{computed_hash}"
   end
