@@ -18,7 +18,7 @@ describe DotcomEndpoint do
   end
 
   it 'successfully sends shipment' do
-    VCR.use_cassette('dotcom_success') do
+    VCR.use_cassette('dotcom_order_success') do
       post '/send_shipment', message.to_json, auth
 
       last_response.status.should eq(200)
@@ -29,7 +29,7 @@ describe DotcomEndpoint do
   end
 
   it 'fails with non-existent products' do
-    VCR.use_cassette('dotcom_fail') do
+    VCR.use_cassette('dotcom_order_fail') do
       # Replace valid items with non-existent ones
       message['payload'] = Factories.payload({'parameters' => Factories.config}, Factories.non_existent_items)
 
