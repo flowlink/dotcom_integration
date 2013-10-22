@@ -18,7 +18,7 @@ class Processor
     shipment_polling = DotcomShipmentTracking.new(config)
     response = shipment_polling.poll!
 
-    { :messages => response }
+    { :messages => response, :parameters => [{ 'name' => 'dotcom.last_shipment_date', 'value' => shipment_polling.last_shipment_date.to_s }] }
   end
 
   private 
