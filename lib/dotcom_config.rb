@@ -23,7 +23,7 @@ class DotcomConfig
   end
 
   def poll!
-    self.class.get(request_path, :headers => {'Authorization' => authorization_header, 'Content-Type' => 'application/xml'})
+    response = self.class.get(request_path, :headers => {'Authorization' => authorization_header, 'Content-Type' => 'application/xml'})
     response['response']
   end
 
@@ -42,5 +42,5 @@ class DotcomConfig
     Base64.encode64(hash)
   end
 
-  # TODO Require request_path, etc. methods to be implemented.
+  # TODO Require request_path, etc. methods to be implemented by the DotcomConfig subclasses
 end

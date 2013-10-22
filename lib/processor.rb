@@ -18,14 +18,7 @@ class Processor
     shipment_polling = DotcomShipmentTracking.new(config)
     response = shipment_polling.poll!
 
-    if response['order_errors'] and response['order_errors'].key?('order_error')
-      errors = response['order_errors']['order_error']
-      errors = [errors] if errors.class == Hash
-
-      raise DotcomError.new(errors)
-    else
-      { :notifications => success_notification }
-    end
+    { :messages => response }
   end
 
   private 
