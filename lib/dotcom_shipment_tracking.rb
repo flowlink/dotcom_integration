@@ -7,7 +7,7 @@ class DotcomShipmentTracking < DotcomConfig
   end
 
   def request_path
-    "/shipment?fromShipDate=#{last_shipment_date}&toShipDate=#{Date.today.next.to_s}"
+    "/shipment?fromShipDate=#{last_shipment_date.next}&toShipDate=#{Date.today.next.to_s}"
   end
 
   def poll!
