@@ -1,5 +1,5 @@
 class DotcomShipmentTracking < DotcomConfig
-  attr_reader :last_shipment_date
+  attr_accessor :last_shipment_date
 
   def initialize config
     super(config)
@@ -51,7 +51,7 @@ class DotcomShipmentTracking < DotcomConfig
     if shipment['ship_date']
       ship_date = Date.strptime(shipment['ship_date'], "%m/%d/%Y")
 
-      @last_shipment_date = ship_date if ship_date and (ship_date > last_shipment_date)
+      self.last_shipment_date = ship_date if ship_date and (ship_date > last_shipment_date)
     end
   end
 end
