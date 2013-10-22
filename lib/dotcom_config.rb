@@ -17,6 +17,7 @@ class DotcomConfig
     validate!
   end
 
+  # TODO Combine send! and poll! methods
   def send!
     response = self.class.post(request_path, :body => generate_xml, :headers => {'Authorization' => authorization_header, 'Content-Type' => 'application/xml'})
     response['response']

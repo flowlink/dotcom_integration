@@ -1,4 +1,3 @@
-# require File.expand_path(File.dirname(__FILE__) + '/lib/dotcom.rb')
 Dir['./lib/**/*.rb'].each(&method(:require))
 
 class DotcomEndpoint < EndpointBase

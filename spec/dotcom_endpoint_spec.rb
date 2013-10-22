@@ -30,7 +30,7 @@ describe DotcomEndpoint do
 
   it 'fails with non-existent products' do
     VCR.use_cassette('dotcom_order_fail') do
-      # Replace valid items with non-existent ones
+      # Replacing valid items with non-existent ones
       message['payload'] = Factories.payload({'parameters' => Factories.config}, Factories.non_existent_items)
 
       post '/send_shipment', message.to_json, auth
