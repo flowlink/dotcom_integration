@@ -14,7 +14,7 @@ class DotcomOrder < DotcomConfig
     Nokogiri::XML::Builder.new do |xml|
       xml.orders {
         xml.order {
-          xml.send 'order-number',                 number
+          xml.send 'order-number',                 dcd_order_number
           xml.send 'ship_date',                    shipped_at
           xml.send 'ship-method',                  Helpers.translate_shipping_method(shipping_method)
           xml.send 'invoice-number',               0
@@ -25,7 +25,7 @@ class DotcomOrder < DotcomConfig
           xml.send 'drop-ship',                    ''
           xml.send 'ok-partial-ship',              ''
           xml.send 'declared-value',               0
-          xml.send 'cancel-date',                  Date.today.to_s
+          xml.send 'cancel-date',                  '2013-01-01'
           xml.send 'total-tax',                    0
           xml.send 'total-shipping-handling',      0
           xml.send 'total-discount',               0
@@ -43,7 +43,7 @@ class DotcomOrder < DotcomConfig
           xml.send 'asn-qualifier',                ''
           xml.send 'gift-order-indicator',         ''
           xml.send 'order-source',                 ''
-          xml.send 'promise-date',                 Date.today.to_s
+          xml.send 'promise-date',                 '2013-01-01'
           xml.send 'third-party-account',          ''
           xml.send 'priority',                     ''
           xml.send 'retail-department',            ''
@@ -53,14 +53,14 @@ class DotcomOrder < DotcomConfig
 
           xml.send('billing-information') {
             xml.send 'billing-customer-number',    ''
-            xml.send 'billing-name',               'A'
+            xml.send 'billing-name',               '-'
             xml.send 'billing-company',            ''
-            xml.send 'billing-address1',           'A'
-            xml.send 'billing-address2',           'A'
-            xml.send 'billing-address3',           'A'
-            xml.send 'billing-city',               'A'
+            xml.send 'billing-address1',           '-'
+            xml.send 'billing-address2',           '-'
+            xml.send 'billing-address3',           '-'
+            xml.send 'billing-city',               '-'
             xml.send 'billing-state',              ''
-            xml.send 'billing-zip',                20814
+            xml.send 'billing-zip',                0
             xml.send 'billing-country',            ''
             xml.send 'billing-phone',              ''
             xml.send 'billing-email',              ''
@@ -91,14 +91,14 @@ class DotcomOrder < DotcomConfig
           }
 
           xml.send('store-information') {
-            xml.send 'store-name',                 shipping_full_name
-            xml.send 'store-address1',             shipping_address1
-            xml.send 'store-address2',             shipping_address2
-            xml.send 'store-city',                 shipping_city
-            xml.send 'store-state',                Helpers.states_hash[shipping_state]
-            xml.send 'store-country',              shipping_country
-            xml.send 'store-zip',                  shipping_zipcode
-            xml.send 'store-phone',                shipping_phone
+            xml.send 'store-name',                 '-'
+            xml.send 'store-address1',             '-'
+            xml.send 'store-address2',             '-'
+            xml.send 'store-city',                 '-'
+            xml.send 'store-state',                '-'
+            xml.send 'store-country',              '-'
+            xml.send 'store-zip',                  '-'
+            xml.send 'store-phone',                '-'
           }          
 
           xml.send('line-items') {
@@ -113,7 +113,6 @@ class DotcomOrder < DotcomConfig
                 xml.send 'line-number',            ''
                 xml.send 'gift-box-wrap-quantity', 0
                 xml.send 'gift-box-wrap-type',     ''
-
               }
             end
           }
@@ -124,8 +123,8 @@ class DotcomOrder < DotcomConfig
 
   private
 
-  def number
-    shipment['number']
+  def dcd_order_number
+    shipment['order_number'] + '-' + shipment['number']
   end
 
   def order_number
@@ -133,11 +132,11 @@ class DotcomOrder < DotcomConfig
   end
 
   def shipped_at
-    shipment['shipped_at'] ? shipment['shipped_at'][0..-11] : Date.today
+    shipment['shipped_at'] ? shipment['shipped_at'][0..-11] : '2013-01-01'
   end
 
   def shipping_method
-    shipment['shipping_method'] ? shipment['shipping_method'][0..2] : ""
+    shipment['shipping_method'] ? shipment['shipping_method'].gsub('(USD)','') : ''
   end
 
   def email

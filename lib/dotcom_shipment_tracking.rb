@@ -31,8 +31,8 @@ class DotcomShipmentTracking < DotcomConfig
       payload: {
         order: {},
         shipment: {
-          number:               shipment['dcd_order_number'],
-          order_number:         shipment['client_order_number'],
+          number:               shipment['dcd_order_number'].split(/-/).last,
+          order_number:         shipment['dcd_order_number'].split(/-/).first,
           tracking:             '',
           tracking_url:         '',
           carrier:              '',
