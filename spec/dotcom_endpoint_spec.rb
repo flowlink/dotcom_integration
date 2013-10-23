@@ -17,7 +17,7 @@ describe DotcomEndpoint do
     {'HTTP_X_AUGURY_TOKEN' => 'x123', "CONTENT_TYPE" => "application/json"}
   end
 
-  it 'successfully sends shipment' do
+  it '/send_shipment succeeds with existing products' do
     VCR.use_cassette('dotcom_order_success') do
       post '/send_shipment', message.to_json, auth
 
@@ -28,7 +28,7 @@ describe DotcomEndpoint do
     end
   end
 
-  it 'fails with non-existent products' do
+  it '/send_shipment fails with non-existing products' do
     VCR.use_cassette('dotcom_order_fail') do
       # Replacing valid items with non-existent ones
       message['payload'] = Factories.payload({'parameters' => Factories.config}, Factories.non_existent_items)
@@ -39,6 +39,18 @@ describe DotcomEndpoint do
       last_response.body.should match("message_id")
       last_response.body.should match("notifications")
       last_response.body.should match("Invalid Item.")
+    end
+  end
+
+  it '/send_shipment fails with non-existing products' do
+    VCR.use_cassette('dotcom_shipment_success') do
+      # Replacing valid items with non-existent ones
+      post '/tracking', message.to_json, auth
+
+      last_response.status.should eq(200)
+      last_response.body.should match("message_id")
+      last_response.body.should match("messages")
+      last_response.body.should match("parameters")
     end
   end
 end

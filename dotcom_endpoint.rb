@@ -22,9 +22,6 @@ class DotcomEndpoint < EndpointBase
     begin
       msg = Processor.track_shipments(@config)
       code = 200
-    rescue DotcomError => e
-      msg = e.generate_error_notifications_hash
-      code = 500
     rescue => e
       msg = standard_error_notifications_hash(e)
       code = 500
