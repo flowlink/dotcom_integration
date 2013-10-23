@@ -12,12 +12,13 @@ module Factories
     def config(args={})
       [
         { 'name' => 'dotcom.api_key', 'value' => api_key },
-        { 'name' => 'dotcom.password', 'value' => password }
+        { 'name' => 'dotcom.password', 'value' => password },
+        { 'name' => 'dotcom.last_shipment_date', 'value' => '2011-01-01' }
       ]
     end
 
     def processed_config
-      { 'dotcom.api_key' => api_key, 'dotcom.password' => api_key }
+      { 'dotcom.api_key' => api_key, 'dotcom.password' => password, 'dotcom.last_shipment_date' => '2011-01-01' }
     end
 
     def shipment(args={})

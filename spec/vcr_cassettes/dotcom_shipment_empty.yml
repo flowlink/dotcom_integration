@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cwa.dotcomdistribution.com/dcd_api_test/DCDAPIService.svc/shipment?fromShipDate=2013-10-23&toShipDate=2013-10-24
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - 0ec79156828ad21b109a616aa3ca920e:TJn64t1WShieVFK76l+VOA==
+      Content-Type:
+      - application/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Aspnet-Version:
+      - 2.0.50727
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Wed, 23 Oct 2013 15:31:26 GMT
+      Content-Length:
+      - '191'
+    body:
+      encoding: UTF-8
+      string: <response xmlns="http://dcd/datacontracts/shipment" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><shipments
+        xmlns:a="http://schemas.datacontract.org/2004/07/DCDAPIService"/></response>
+    http_version: 
+  recorded_at: Wed, 23 Oct 2013 15:31:28 GMT
+recorded_with: VCR 2.6.0
