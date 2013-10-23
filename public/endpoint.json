@@ -12,8 +12,8 @@
             "requires": {
                 "parameters": [
                     {
-                        "name": "username",
-                        "description": "Dotcom Distribution username"
+                        "name": "api_key",
+                        "description": "Dotcom Distribution API key"
                     },
                     {
                         "name": "password",
@@ -33,12 +33,16 @@
             "requires": {
                 "parameters": [
                     {
-                        "name": "username",
-                        "description": "Dotcom Distribution username"
+                        "name": "api_key",
+                        "description": "Dotcom Distribution API key"
                     },
                     {
                         "name": "password",
                         "description": "Dotcom Distribution password"
+                    },
+                    {
+                        "name": "last_shipment_date",
+                        "description": "Initial date shipment polling will start from"
                     }
                 ]
             },
