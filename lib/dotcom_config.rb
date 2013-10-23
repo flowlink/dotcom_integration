@@ -28,6 +28,10 @@ class DotcomConfig
     response['response']
   end
 
+  def request_path
+    raise MethodNotImplemented, 'DotcomConfig subclasses must implement request_path method'
+  end
+
   private
   def validate!
     raise AuthenticationError, "API key and Password must be provided" if api_key.nil? || password.nil?
@@ -42,6 +46,4 @@ class DotcomConfig
     hash = OpenSSL::HMAC.digest(digest, password, (self.class.base_uri + request_path))
     Base64.encode64(hash)
   end
-
-  # TODO Require request_path, etc. methods to be implemented by the DotcomConfig subclasses
 end

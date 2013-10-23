@@ -1,4 +1,5 @@
 class AuthenticationError < StandardError; end
+class MethodNotImplemented < StandardError; end
 
 class DotcomError < StandardError
   attr_accessor :errors_array
