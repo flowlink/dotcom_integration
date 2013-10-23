@@ -10,7 +10,7 @@ class DotcomShipmentTracking < DotcomConfig
     "/shipment?fromShipDate=#{last_shipment_date.to_s}&toShipDate=#{Date.today.next.to_s}"
   end
 
-  def poll!
+  def send!
     response = super
     messages = []
     if response['shipments'] and response['shipments'].key?('shipment')
