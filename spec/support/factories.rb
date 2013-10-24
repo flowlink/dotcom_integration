@@ -75,7 +75,7 @@ module Factories
       {
         "shipment" => {
           "number" => "H215918586",
-          "order_number" => "R61927170",
+          "order_number" => "R619271706",
           "email" => "spree@example.com",
           "cost" => 5,
           "status" => "shipped",

@@ -2,13 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cwa.dotcomdistribution.com/dcd_api_test/DCDAPIService.svc/shipment?fromShipDate=2011-01-01&toShipDate=2013-10-24
+    uri: http://cwa.dotcomdistribution.com/dcd_api_test/DCDAPIService.svc/shipment?fromShipDate=2011-01-01&toShipDate=2013-10-24%2018:14:05%20-0400
     body:
       encoding: US-ASCII
       string: ''
     headers:
       Authorization:
-      - 0ec79156828ad21b109a616aa3ca920e:DURrhUA/RKFTDOYsS1HJeA==
+      - 0ec79156828ad21b109a616aa3ca920e:OS+lUVdohLz+ZeA+uPfc2w==
       Content-Type:
       - application/xml
   response:
@@ -27,7 +27,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Wed, 23 Oct 2013 15:22:52 GMT
+      - Thu, 24 Oct 2013 22:29:05 GMT
       Content-Length:
       - '39880'
     body:
@@ -196,5 +196,5 @@ http_interactions:
         173rd street UV1 467a</a:shipto_addr1><a:shipto_addr2/><a:shipto_city>hammond</a:shipto_city><a:shipto_email_address>w-ang-xu@hotmail.com</a:shipto_email_address><a:shipto_name>xu
         wang</a:shipto_name><a:shipto_state>IN</a:shipto_state><a:shipto_zip>46323</a:shipto_zip></a:shipment></shipments></response>'
     http_version: 
-  recorded_at: Wed, 23 Oct 2013 15:22:54 GMT
+  recorded_at: Thu, 24 Oct 2013 22:29:05 GMT
 recorded_with: VCR 2.6.0

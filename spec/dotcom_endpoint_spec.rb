@@ -44,7 +44,7 @@ describe DotcomEndpoint do
 
   it '/send_shipment fails with non-existing products' do
     VCR.use_cassette('dotcom_shipment_success') do
-      Date.stub(:today => '2013-10-23')
+      Time.stub(:now => (Time.new 2013,10,24,18,29,05,'-04:00'))
       # Replacing valid items with non-existent ones
       post '/tracking', message.to_json, auth
 

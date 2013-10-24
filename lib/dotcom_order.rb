@@ -4,6 +4,8 @@ class DotcomOrder < DotcomConfig
   def initialize shipment, config
     super(config)
     @shipment = shipment
+
+    validate_order!
   end
 
   def request_path 
@@ -123,8 +125,14 @@ class DotcomOrder < DotcomConfig
 
   private
 
+  def validate_order!
+    if dcd_order_number.size > 20  
+      raise DotcomEndpointError, 'the combination of order number and shipment number can not exceed 20 characters'
+    end
+  end
+
   def dcd_order_number
-    shipment['order_number'] + '-' + shipment['number']
+    shipment['order_number'] + shipment['number']
   end
 
   def order_number
