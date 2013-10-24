@@ -15,6 +15,7 @@ describe DotcomShipmentTracking do
 
   it '#send! returns array of shipment:confirm messages' do
     VCR.use_cassette('dotcom_shipment_success') do
+      Date.stub(:today => '2013-10-23')
       instance = described_class.new(config)
       response = instance.send!
       response.should be_kind_of(Array)
@@ -23,9 +24,10 @@ describe DotcomShipmentTracking do
   end
 
   it '#send! returns empty array' do
-    config['dotcom.last_shipment_date'] = Date.today.to_s
+    config['dotcom.last_shipment_date'] = '2013-10-23'
 
     VCR.use_cassette('dotcom_shipment_empty') do
+      Date.stub(:today => '2013-10-23')
       instance = described_class.new(config)
       response = instance.send!
       response.count.should eq(0)
