@@ -27,7 +27,7 @@ class DotcomOrder < DotcomConfig
           xml.send 'drop-ship',                    ''
           xml.send 'ok-partial-ship',              ''
           xml.send 'declared-value',               0
-          xml.send 'cancel-date',                  '2013-01-01'
+          xml.send 'cancel-date',                  '1970-01-01'
           xml.send 'total-tax',                    0
           xml.send 'total-shipping-handling',      0
           xml.send 'total-discount',               0
@@ -45,7 +45,7 @@ class DotcomOrder < DotcomConfig
           xml.send 'asn-qualifier',                ''
           xml.send 'gift-order-indicator',         ''
           xml.send 'order-source',                 ''
-          xml.send 'promise-date',                 '2013-01-01'
+          xml.send 'promise-date',                 '1970-01-01'
           xml.send 'third-party-account',          ''
           xml.send 'priority',                     ''
           xml.send 'retail-department',            ''
@@ -140,7 +140,7 @@ class DotcomOrder < DotcomConfig
   end
 
   def shipped_at
-    shipment['shipped_at'] ? shipment['shipped_at'][0..-11] : '2013-01-01'
+    shipment['shipped_at'] ? shipment['shipped_at'][0..-11] : '1970-01-01'
   end
 
   def shipping_method
