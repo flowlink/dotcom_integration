@@ -5,12 +5,12 @@ describe DotcomShipmentTracking do
 
   it 'initializes correctly' do
     instance = described_class.new(config)
-    instance.last_shipment_date.should be_kind_of(String)
+    instance.last_polling_datetime.should be_kind_of(String)
   end
 
-  it '#request_path includes last_shipment_date' do
+  it '#request_path includes last_polling_datetime' do
     instance = described_class.new(config)
-    instance.request_path.should match("fromShipDate=#{config['dotcom.last_shipment_date']}")
+    instance.request_path.should match("fromShipDate=#{config['dotcom.last_polling_datetime']}")
   end
 
   it '#send! returns array of shipment:confirm messages' do
@@ -23,14 +23,14 @@ describe DotcomShipmentTracking do
   end
 
   it '#send! returns empty array' do
-    config['dotcom.last_shipment_date'] = '2013-10-23'
+    config['dotcom.last_polling_datetime'] = '2013-10-23'
 
     VCR.use_cassette('dotcom_shipment_empty') do
       Time.stub(:now => (Time.new 2013,10,24,18,29,05,'-04:00'))
       instance = described_class.new(config)
       response = instance.send!
       response.count.should eq(0)
-      instance.last_shipment_date.to_s.should eq(config['dotcom.last_shipment_date']) # Should not change last_shipment_date
+      instance.last_polling_datetime.to_s.should eq(config['dotcom.last_polling_datetime']) # Should not change last_polling_datetime
     end
   end
 end

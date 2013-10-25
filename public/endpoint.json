@@ -41,7 +41,7 @@
                         "description": "Dotcom Distribution password"
                     },
                     {
-                        "name": "last_shipment_date",
+                        "name": "last_polling_datetime",
                         "description": "Initial date shipment polling will start from"
                     }
                 ]

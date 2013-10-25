@@ -1,17 +1,17 @@
 require 'uri'
 
 class DotcomShipmentTracking < DotcomConfig
-  attr_accessor :last_shipment_date, :next_shipment_date
+  attr_accessor :last_polling_datetime, :next_polling_datetime
 
   def initialize config
     super(config)
-    @last_shipment_date = config['dotcom.last_shipment_date']
+    @last_polling_datetime = config['dotcom.last_polling_datetime']
 
-    @next_shipment_date = (Time.now - fifteen_minutes).to_s
+    @next_polling_datetime = (Time.now - fifteen_minutes).to_s
   end
 
   def request_path
-    "/shipment?fromShipDate=#{URI.encode(last_shipment_date)}&toShipDate=#{URI.encode(next_shipment_date)}"
+    "/shipment?fromShipDate=#{URI.encode(last_polling_datetime)}&toShipDate=#{URI.encode(next_polling_datetime)}"
   end
 
   def send!
