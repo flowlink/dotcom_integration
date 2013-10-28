@@ -53,27 +53,27 @@ class DotcomOrder < DotcomConfig
           xml.send 'retail-vendor',                ''
           xml.send 'pool',                         ''
 
-          xml.send('billing-information') {
-            xml.send 'billing-customer-number',    ''
-            xml.send 'billing-name',               '-'
-            xml.send 'billing-company',            ''
-            xml.send 'billing-address1',           '-'
-            xml.send 'billing-address2',           '-'
-            xml.send 'billing-address3',           '-'
-            xml.send 'billing-city',               '-'
-            xml.send 'billing-state',              ''
-            xml.send 'billing-zip',                0
-            xml.send 'billing-country',            ''
-            xml.send 'billing-phone',              ''
-            xml.send 'billing-email',              ''
-          }
-
           xml.send('custom-fields') {
             xml.send 'custom-field-1',             ''
             xml.send 'custom-field-2',             ''
             xml.send 'custom-field-3',             ''
             xml.send 'custom-field-4',             ''
             xml.send 'custom-field-5',             ''
+          }
+
+          xml.send('billing-information') {
+            xml.send 'billing-customer-number',    ''
+            xml.send 'billing-name',               shipping_full_name
+            xml.send 'billing-address1',           shipping_address1
+            xml.send 'billing-address2',           shipping_address2
+            xml.send 'billing-address3',           '-'
+            xml.send 'billing-city',               shipping_city
+            xml.send 'billing-state',              Helpers.states_hash[shipping_state]
+            xml.send 'billing-country',            shipping_country
+            xml.send 'billing-zip',                shipping_zipcode
+            xml.send 'billing-phone',              shipping_phone
+            xml.send 'billing-email',              email
+            xml.send 'billing-company',            ''
           }
 
           xml.send('shipping-information') {
