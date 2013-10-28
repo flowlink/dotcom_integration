@@ -1,9 +1,11 @@
 class DotcomOrder < DotcomConfig
-  attr_reader :shipment
+  attr_reader :shipment, :shipping_lookup_hash
 
   def initialize shipment, config
     super(config)
+    
     @shipment = shipment
+    @shipping_lookup_hash = config['dotcom.shipping_lookup'].first
 
     validate_order!
   end
@@ -18,7 +20,7 @@ class DotcomOrder < DotcomConfig
         xml.order {
           xml.send 'order-number',                 dcd_order_number
           xml.send 'ship_date',                    shipped_at
-          xml.send 'ship-method',                  Helpers.translate_shipping_method(shipping_method)
+          xml.send 'ship-method',                  shipping_lookup_hash[shipping_method]
           xml.send 'invoice-number',               0
           xml.send 'order-date',                   Date.today.to_s
           xml.send 'ship_via',                     ''
@@ -144,7 +146,7 @@ class DotcomOrder < DotcomConfig
   end
 
   def shipping_method
-    shipment['shipping_method'] ? shipment['shipping_method'].gsub('(USD)','') : ''
+    shipment['shipping_method']
   end
 
   def email

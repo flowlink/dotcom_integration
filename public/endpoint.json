@@ -13,12 +13,19 @@
                 "parameters": [
                     {
                         "name": "api_key",
-                        "description": "Dotcom Distribution API key"
+                        "description": "Dotcom Distribution API key",
+                        "data_type": "string"
                     },
                     {
                         "name": "password",
-                        "description": "Dotcom Distribution password"
-                    }
+                        "description": "Dotcom Distribution password",
+                        "data_type": "string"
+                    },
+                    {
+                        "name": "shipping_lookup",
+                        "description": "Spree to Dotcom Distribution shipping methods' mapping",
+                        "data_type": "list"
+                    }                    
                 ]
             },
             "recommends": {
@@ -34,15 +41,18 @@
                 "parameters": [
                     {
                         "name": "api_key",
-                        "description": "Dotcom Distribution API key"
+                        "description": "Dotcom Distribution API key",
+                        "data_type": "string"
                     },
                     {
                         "name": "password",
-                        "description": "Dotcom Distribution password"
+                        "description": "Dotcom Distribution password",
+                        "data_type": "string"
                     },
                     {
                         "name": "last_polling_datetime",
-                        "description": "Initial date shipment polling will start from"
+                        "description": "Initial date shipment polling will start from",
+                        "data_type": "string"
                     }
                 ]
             },
