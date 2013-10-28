@@ -18,7 +18,7 @@ class DotcomShipmentTracking < DotcomConfig
     response = super
     messages = []
     if response['shipments'] and response['shipments'].key?('shipment')
-      response['shipments']['shipment'].each do |shipment|
+      Array.wrap(response['shipments']['shipment']).each do |shipment|
         messages << create_message(shipment)
       end
     end
@@ -37,8 +37,8 @@ class DotcomShipmentTracking < DotcomConfig
       payload: {
         order: {},
         shipment: {
-          number:               ('H' + shipment['dcd_order_number'].split(/[H]/i).last),
-          order_number:         shipment['dcd_order_number'].split(/[H]/i).first,
+          number:               ('H' + shipment['client_order_number'].split(/[H]/i).last),
+          order_number:         shipment['client_order_number'].split(/[H]/i).first,
           tracking:             Array.wrap(shipment['ship_items']['ship_item']).first['tracking_number'] || '',
           tracking_url:         '',
           carrier:              Array.wrap(shipment['ship_items']['ship_item']).first['carrier'] || '',
