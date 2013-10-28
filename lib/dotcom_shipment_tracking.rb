@@ -39,15 +39,15 @@ class DotcomShipmentTracking < DotcomConfig
         shipment: {
           number:               ('H' + shipment['dcd_order_number'].split(/[H]/i).last),
           order_number:         shipment['dcd_order_number'].split(/[H]/i).first,
-          tracking:             '',
+          tracking:             Array.wrap(shipment['ship_items']['ship_item']).first['tracking_number'] || '',
           tracking_url:         '',
-          carrier:              '',
+          carrier:              Array.wrap(shipment['ship_items']['ship_item']).first['carrier'] || '',
           shipped_date:         shipment['ship_date'],
           delivery_date:        '',
           cost:                 0.0,
           status:               '',
           stock_location:       '',
-          shipping_method:      '',
+          shipping_method:      Array.wrap(shipment['ship_items']['ship_item']).first['service'] || ''
         }
       }
     }
