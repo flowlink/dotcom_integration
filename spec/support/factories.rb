@@ -11,14 +11,39 @@ module Factories
 
     def config(args={})
       [
-        { 'name' => 'dotcom.api_key', 'value' => api_key },
-        { 'name' => 'dotcom.password', 'value' => password },
-        { 'name' => 'dotcom.last_polling_datetime', 'value' => '2011-01-01' }
+        {
+          'name' => 'dotcom.api_key', 'value' => api_key
+        },
+        {
+          'name' => 'dotcom.password', 'value' => password
+        },
+        {
+          'name' => 'dotcom.last_polling_datetime', 'value' => '2011-01-01'
+        },
+        {
+          'name' => 'dotcom.shipping_lookup',
+          'value' => [
+            { 'name' => 'UPS Ground (USD)', 'value' => '03'},
+            { 'name' => 'UPS Two Day (USD)', 'value' => '02'},
+            { 'name' => 'UPS One Day (USD)', 'value' => '01'}
+          ]
+        }
       ]
     end
 
     def processed_config
-      { 'dotcom.api_key' => api_key, 'dotcom.password' => password, 'dotcom.last_polling_datetime' => '2011-01-01' }
+      { 
+        'dotcom.api_key' => api_key,
+        'dotcom.password' => password,
+        'dotcom.last_polling_datetime' => '2011-01-01',
+        "dotcom.shipping_lookup"=> [
+          {
+            "UPS Ground (USD)" => "03",
+            "UPS Two Day (USD)" => "02",
+            "UPS One Day (USD)" => "01"
+          }
+        ]
+      }
     end
 
     def shipment(args={})
