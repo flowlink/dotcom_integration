@@ -17,9 +17,15 @@ class DotcomShipmentTracking < DotcomConfig
   def send!
     response = super
     messages = []
+
     if response['shipments'] and response['shipments'].key?('shipment')
       Array.wrap(response['shipments']['shipment']).each do |shipment|
-        messages << create_message(shipment)
+        # For cancelled shipments Dotcom Distribution returns records with quantities set to zero.
+        # Do not generate shipment:confirm messages for cancelled shipments.
+        total_quantity_shipped = Array.wrap(shipment['ship_items']['ship_item']).sum {|x| x['quantity_shipped'].to_i }
+        if total_quantity_shipped > 0
+          messages << create_message(shipment)
+        end
       end
     end
     messages
