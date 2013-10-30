@@ -2,7 +2,7 @@
     "name": "dotcom",
     "display": "Dotcom Distribution",
     "description": "Order fulfillment and tracking using Dotcom Distribution",
-    "help": "http://guides.spreecommerce.com/integration/endpoints/dotcom_integration.html",
+    "help": "http://guides.spreecommerce.com/integration/dotcom_integration.html",
     "icon_url": "dotcom.png",
     "services": [
         {
