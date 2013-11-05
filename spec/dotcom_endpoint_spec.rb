@@ -24,7 +24,7 @@ describe DotcomEndpoint do
       last_response.status.should eq(200)
       last_response.body.should match("message_id")
       last_response.body.should match("notifications")
-      last_response.body.should match("Successfully Sent")
+      last_response.body.should match("Successfully sent")
     end
   end
 
