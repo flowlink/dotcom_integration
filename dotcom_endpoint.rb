@@ -41,7 +41,8 @@ class DotcomEndpoint < EndpointBase
       	{ 
           level: 'error',
           subject: "#{e.class}: #{e.message.strip}",
-          description: e.backtrace.to_a.join('\n\t')
+          description: "#{e.class}: #{e.message.strip}",
+          backtrace: e.backtrace.to_a.join('\n\t')
         }
       ]
     }
