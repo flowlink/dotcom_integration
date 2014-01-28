@@ -57,7 +57,8 @@
                 ]
             },
             "recommends": {
-                "messages": ["dotcom:shipment_results:poll"]
+                "messages": ["dotcom:shipment_results:poll"],
+                "schedule": { "count": 1, "interval": "hour" },
             },
             "produces": {
                 "messages": [
