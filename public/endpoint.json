@@ -1,73 +1,64 @@
 {
-    "name": "dotcom",
-    "display": "Dotcom Distribution",
-    "description": "Order fulfillment and tracking using Dotcom Distribution",
-    "help": "http://guides.spreecommerce.com/integration/dotcom_integration.html",
-    "icon_url": "dotcom.png",
-    "services": [
-        {
-            "name": "send_shipment",
-            "path": "/send_shipment",
-            "description": "Send shipment details to Dotcom Distribution on completion",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "api_key",
-                        "description": "Dotcom Distribution API key",
-                        "data_type": "string"
-                    },
-                    {
-                        "name": "password",
-                        "description": "Dotcom Distribution password",
-                        "data_type": "string"
-                    },
-                    {
-                        "name": "shipping_lookup",
-                        "description": "Spree to Dotcom Distribution shipping methods' mapping",
-                        "data_type": "list"
-                    }                    
-                ]
-            },
-            "recommends": {
-                "messages": ["shipment:ready"]
-            },
-            "produces": {}
-        },
-        {
-            "name": "tracking",
-            "path": "/tracking",
-            "description": "Track shipment dispatches.",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "api_key",
-                        "description": "Dotcom Distribution API key",
-                        "data_type": "string"
-                    },
-                    {
-                        "name": "password",
-                        "description": "Dotcom Distribution password",
-                        "data_type": "string"
-                    },
-                    {
-                        "name": "last_polling_datetime",
-                        "description": "Initial date shipment polling will start from",
-                        "data_type": "string"
-                    }
-                ]
-            },
-            "recommends": {
-                "messages": ["dotcom:shipment_results:poll"],
-                "schedule": { "count": 1, "interval": "hour" },
-            },
-            "produces": {
-                "messages": [
-                    {
-                        "message": "shipment:confirm",
-                        "schema": "/shipment_confirm.json"
-                    }
-                ]
-            }
-        }
-    ]
+  "name": "dotcom",
+  "display": "Dotcom Distribution",
+  "description": "Order fulfillment and tracking using Dotcom Distribution",
+  "help": "http://guides.spreecommerce.com/integration/dotcom_integration.html",
+  "icon_url": "dotcom.png",
+  "services": [
+  {
+    "name": "send_shipment",
+    "path": "/send_shipment",
+    "description": "Send shipment details to Dotcom Distribution on completion",
+    "requires": {
+      "parameters": [
+      {
+        "name": "api_key",
+        "description": "Dotcom Distribution API key",
+        "data_type": "string"
+      },
+      {
+        "name": "password",
+        "description": "Dotcom Distribution password",
+        "data_type": "string"
+      },
+      {
+        "name": "shipping_lookup",
+        "description": "Spree to Dotcom Distribution shipping methods' mapping",
+        "data_type": "list"
+      }
+      ]
+    },
+    "recommends": {
+      "messages": ["shipment:ready"]
+    }
+  },
+  {
+    "name": "tracking",
+    "path": "/tracking",
+    "description": "Track shipment dispatches.",
+    "requires": {
+      "parameters": [
+      {
+        "name": "api_key",
+        "description": "Dotcom Distribution API key",
+        "data_type": "string"
+      },
+      {
+        "name": "password",
+        "description": "Dotcom Distribution password",
+        "data_type": "string"
+      },
+      {
+        "name": "last_polling_datetime",
+        "description": "Initial date shipment polling will start from",
+        "data_type": "string"
+      }
+      ]
+    },
+    "recommends": {
+      "messages": ["dotcom:shipment_results:poll"],
+      "schedule": { "count": 1, "interval": "hours" }
+    }
+  }
+  ]
 }
