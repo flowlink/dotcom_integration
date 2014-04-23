@@ -1,11 +1,24 @@
 # Dotcom Distribution Endpoint
 
-For a detailted explanation check out the [Spree Guides - Dotcom Distribution Endpoint](http://guides.spreecommerce.com/integration/dotcom_integration.html).
+#### Connection Parameters
 
-## Send Shipments
+| Name | Value | example |
+| :----| :-----| :------ |
+| dotcom_api_key | Api Key | ertewrt |
+| dotcom_password | Password | commerce |
 
-* Send shipment details to Dotcom Distribution on completion
+### Add Shipments webhook
 
-## Shipment Tracking
+Send shipment details to Dotcom Distribution on completion
+
+| Name | Value | example |
+| :----| :-----| :------ |
+| dotcom_shipping_lookup | Spree to Dotcom Distribution shipping methods' mapping | [{ 'UPS Ground (USD)' => '03' }] |
+
+### Get Shipments webhooks
 
 * Track shipment dispatches from Dotcom Distribution
+
+| Name | Value | example |
+| :----| :-----| :------ |
+| dotcom_last_polling_datetime | Timestamp for polling shipments | 2014-01-29T03:14:07+00:00 |
