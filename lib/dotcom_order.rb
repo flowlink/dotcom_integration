@@ -5,7 +5,7 @@ class DotcomOrder < DotcomConfig
     super(config)
     
     @shipment = shipment
-    @shipping_lookup_hash = config['dotcom.shipping_lookup'].first
+    @shipping_lookup_hash = config['dotcom_shipping_lookup'].first
 
     validate_order!
   end

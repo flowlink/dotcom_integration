@@ -11,8 +11,8 @@ class DotcomConfig
   attr_accessor :api_key, :password
 
   def initialize config
-    @password  = config['dotcom.password']
-    @api_key   = config['dotcom.api_key']
+    @password  = config['dotcom_password']
+    @api_key   = config['dotcom_api_key']
 
     validate!
   end
