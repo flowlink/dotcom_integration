@@ -1,6 +1,9 @@
+require "sinatra"
+require "endpoint_base"
+
 Dir['./lib/**/*.rb'].each(&method(:require))
 
-class DotcomEndpoint < EndpointBase
+class DotcomEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
 
   post '/send_shipment' do
