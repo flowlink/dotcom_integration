@@ -5,7 +5,7 @@ class DotcomShipmentTracking < DotcomConfig
 
   def initialize config
     super(config)
-    @last_polling_datetime = config['dotcom.last_polling_datetime']
+    @last_polling_datetime = config['dotcom_last_polling_datetime']
 
     @next_polling_datetime = (Time.now - fifteen_minutes).to_s
   end

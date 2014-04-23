@@ -15,10 +15,6 @@ describe DotcomError do
   end
 
   it '#generate_error_notifications_hash returns correct hash/structure' do
-    subject.generate_error_notifications_hash.should have_key(:notifications)
-    subject.generate_error_notifications_hash[:notifications].should be_kind_of(Array)
-    subject.generate_error_notifications_hash[:notifications].first[:level].should eq("error")
-    subject.generate_error_notifications_hash[:notifications].first[:subject].should eq("Invalid Item. Item SPR-00001 does not exist in the item master.")
-    subject.generate_error_notifications_hash[:notifications].first[:description].should eq("Invalid Item. Item SPR-00001 does not exist in the item master.")
+    expect(subject.message).to match "Invalid Item. Item SPR-00001 does not exist in the item master."
   end
 end

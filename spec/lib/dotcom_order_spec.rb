@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DotcomOrder do
   let(:shipment) { Factories.shipment }
-  let(:config)   { Factories.processed_config }
+  let(:config)   { Factories.config }
 
   it 'initializes correctly' do
     instance = described_class.new(shipment, config)
