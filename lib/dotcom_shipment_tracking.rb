@@ -38,24 +38,18 @@ class DotcomShipmentTracking < DotcomConfig
 
   def create_message shipment
     {
-      message: 'shipment:confirm',
-      inflate: true,
-      payload: {
-        order: {},
-        shipment: {
-          number:               ('H' + shipment['client_order_number'].split(/[H]/i).last),
-          order_number:         shipment['client_order_number'].split(/[H]/i).first,
-          tracking:             Array.wrap(shipment['ship_items']['ship_item']).first['tracking_number'] || '',
-          tracking_url:         '',
-          carrier:              Array.wrap(shipment['ship_items']['ship_item']).first['carrier'] || '',
-          shipped_date:         shipment['ship_date'],
-          delivery_date:        '',
-          cost:                 0.0,
-          status:               '',
-          stock_location:       '',
-          shipping_method:      Array.wrap(shipment['ship_items']['ship_item']).first['service'] || ''
-        }
-      }
+      id:               ('H' + shipment['client_order_number'].split(/[H]/i).last),
+      number:               ('H' + shipment['client_order_number'].split(/[H]/i).last),
+      order_number:         shipment['client_order_number'].split(/[H]/i).first,
+      tracking:             Array.wrap(shipment['ship_items']['ship_item']).first['tracking_number'] || '',
+      tracking_url:         '',
+      carrier:              Array.wrap(shipment['ship_items']['ship_item']).first['carrier'] || '',
+      shipped_date:         shipment['ship_date'],
+      delivery_date:        '',
+      cost:                 0.0,
+      status:               '',
+      stock_location:       '',
+      shipping_method:      Array.wrap(shipment['ship_items']['ship_item']).first['service'] || ''
     }
   end
 end

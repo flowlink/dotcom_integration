@@ -15,18 +15,7 @@ class Processor
   end
 
   def self.track_shipments config
-    shipment_polling = DotcomShipmentTracking.new(config)
-    response = shipment_polling.send!
-
-    {
-      :messages => response,
-      :parameters => [{ 'name' => 'dotcom.last_polling_datetime', 'value' => shipment_polling.next_polling_datetime }],
-      :notifications => [ {
-        level: 'info',
-        subject: 'Successfully tracked shipment(s) from Dotcom distribution',
-        description: 'Successfully tracked shipment(s) from Dotcom distribution'
-      }]
-    }
+    DotcomShipmentTracking.new(config)
   end
 
   private
