@@ -1,24 +1,12 @@
-# Dotcom Distribution Endpoint
+# Dotcom Distribution
 
-#### Connection Parameters
+This is a fully hosted and supported integration for use with the [Wombat](http://wombat.co) product. With this integration you can perform the following functions:
 
-| Name | Value | example |
-| :----| :-----| :------ |
-| dotcom_api_key | Api Key | ertewrt |
-| dotcom_password | Password | commerce |
+* Send orders placed through your storefront to DotCom for fulfillment
+* Retrieve shipment data from DotCom and update tracking information to orders.
 
-### Add Shipments webhook
+[Wombat](http://wombat.co) allows you to connect to your own custom integrations.  Feel free to modify the source code and host your own version of the integration - or beter yet, help to make the official integration better by submitting a pull request!
 
-Send shipment details to Dotcom Distribution on completion
+![Wombat Logo](http://spreecommerce.com/images/wombat_logo.png)
 
-| Name | Value | example |
-| :----| :-----| :------ |
-| dotcom_shipping_lookup | Spree to Dotcom Distribution shipping methods' mapping | [{ 'UPS Ground (USD)' => '03' }] |
-
-### Get Shipments webhooks
-
-* Track shipment dispatches from Dotcom Distribution
-
-| Name | Value | example |
-| :----| :-----| :------ |
-| dotcom_last_polling_datetime | Timestamp for polling shipments | 2014-01-29T03:14:07+00:00 |
+This integration is 100% open source an licensed under the terms of the New BSD License.
