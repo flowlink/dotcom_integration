@@ -1,7 +1,12 @@
 require "sinatra"
 require "endpoint_base"
 
-Dir['./lib/**/*.rb'].each(&method(:require))
+require './lib/dotcom_config'
+require './lib/dotcom_order'
+require './lib/dotcom_shipment_tracking'
+require './lib/errors'
+require './lib/helpers'
+require './lib/processor'
 
 class DotcomEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
